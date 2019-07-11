@@ -1,0 +1,75 @@
+<section id="dashboard-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <form ng-submit="vm.search()">
+            <input
+              type="search"
+              name="search"
+              id="search"
+              class="search-box"
+              placeholder="Search movies..."
+              ng-model="vm.searchQuery"
+            />
+            <input
+              type="submit"
+              id="submit"
+              value="Search"
+              class="search-button"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="widget wviolet">
+            <div ht-widget-header title="Movies" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <dtable
+                options="vm.dataTableOptions"
+                rows="vm.movies"
+                class="material"
+                on-row-click="vm.clickMovie(row)"
+              >
+                <column name="Poster">
+                  <img
+                    class="widget-content-image"
+                    src="{{ $row.Poster }}"
+                    alt=""
+                  />
+                </column>
+                <column name="Title" width="200" flex-grow="3">
+                  {{ $row.Title }}
+                </column>
+                <column name="Year">
+                  {{ $row.Year }}
+                </column>
+              </dtable>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="widget wgreen">
+            <div
+              ht-widget-header
+              title="{{ vm.news.title }}"
+              allow-collapse="true"
+            ></div>
+            <div class="widget-content text-center text-info">
+              <img src="{{ vm.currentMovie.Poster }}" alt="" />
+              <p>{{ vm.currentMovie.Title }}</p>
+              <p>{{ vm.currentMovie.Year }}</p>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
